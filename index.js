@@ -3,11 +3,13 @@ for (i = 0; i < document.querySelectorAll("button").length; i++) {
 
         var buttonInnerHTML = this.innerHTML
         drumSwitch(buttonInnerHTML)
+        buttonAnimation(buttonInnerHTML)
 
     })
 }
 
 document.addEventListener("keydown", function(e) {
+    buttonAnimation(e.key)
     drumSwitch(e.key)
 })
 
@@ -50,4 +52,13 @@ function drumSwitch(event) {
 
         default: console.log(buttonInnerHTML)
     }
+}
+
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector(`.${currentKey}`)
+    activeButton.classList.add("pressed")
+
+    setTimeout(() => {
+        activeButton.classList.remove("pressed")
+    }, 100);
 }
